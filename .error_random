@@ -1,0 +1,25 @@
+$ COV=true rake test
+Run options: --seed 47490
+
+# Running:
+
+....................F....................................................................
+
+Finished in 1.636964s, 54.3689 runs/s, 356.1471 assertions/s.
+
+  1) Failure:
+PinInputTest#test_input_new_default [/Users/lucas/pi/pi_driver/lib/pi_driver/pin/file_helper.rb:34]:
+unexpected invocation: File.write("/Users/lucas/pi/pi_driver/development/sys/class/gpio/export", 2)
+unsatisfied expectations:
+- expected exactly once, not yet invoked: File.write("/Users/lucas/pi/pi_driver/development/sys/class/gpio/gpio2/direction", :in)
+
+
+89 runs, 583 assertions, 1 failures, 0 errors, 0 skips
+Coverage report generated for Unit Tests to /Users/lucas/pi/pi_driver/coverage. 1403 / 1403 LOC (100.0%) covered.
+rake aborted!
+Command failed with status (1)
+/Users/lucas/.rvm/gems/ruby-2.4.1/gems/rake-12.3.1/exe/rake:27:in `<top (required)>'
+/Users/lucas/.rvm/gems/ruby-2.4.1/bin/ruby_executable_hooks:15:in `eval'
+/Users/lucas/.rvm/gems/ruby-2.4.1/bin/ruby_executable_hooks:15:in `<main>'
+Tasks: TOP => test
+(See full trace by running task with --trace)

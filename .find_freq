@@ -1,0 +1,55 @@
+say f starts at 1.0 and delta at 16Hz.
+runs once at each f until not successful once.
+f = 1.0
+then 16.0
+then 32.0
+... unsuccessful once say at 256.0
+
+backtrack 3 deltas.
+set delta to half at 8Hz.
+runs two times at each f until not successful once.
+f = 208.0
+then 216.0
+then 224.0
+... unsuccessful once say at 248.0
+
+backtrack 3 deltas.
+set delta to half at 4Hz.
+runs four times at each f until not successful once.
+f = 224.0
+then 228.0
+then 232.0
+... unsuccessful once say at 244.0
+
+backtrack 3 deltas.
+set delta to half at 2Hz.
+runs eight times at each f until not successful once.
+f = 232.0
+then 234.0
+then 236.0
+... unsuccessful once say at 242.0
+
+backtrack 3 deltas.
+set delta to half at 1Hz.
+runs eight times at each f until not successful once.
+f = 236.0
+then 237.0
+then 237.0
+... unsuccessful once say at 241.0
+
+acceptable rate is 241
+
+able to open up starting delta which increases the number of times at each f for resolution of 1Hz.
+
+def get_freq(freq = 1.0, delta = 16.0, num_tries = 1)
+  successful = num_tries.times.map { execute_something }.all?
+
+  if successful
+  	get_freq(freq + delta, delta, num_tries)
+  else
+    freq_found = delta <= 1.0
+    freq_found ? freq - 1 : get_freq(freq - delta * 3, delta / 2, num_tries * 2)
+  end
+end
+
+get_freq

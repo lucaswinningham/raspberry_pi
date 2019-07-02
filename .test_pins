@@ -1,0 +1,93 @@
+
+# Before
+
+pi@raspberrypi:~ $ sudo pigpiod
+pi@raspberrypi:~ $ pigs w 18 1 r 18 w 18 0 r 18
+0
+0
+pi@raspberrypi:~ $ git clone git://git.drogon.net/wiringPi
+Cloning into 'wiringPi'...
+remote: Counting objects: 1177, done.
+remote: Compressing objects: 100% (980/980), done.
+remote: Total 1177 (delta 820), reused 213 (delta 142)
+Receiving objects: 100% (1177/1177), 371.84 KiB | 724.00 KiB/s, done.
+Resolving deltas: 100% (820/820), done.
+pi@raspberrypi:~ $ ./wiringPi/gpio/pintest 
+PinTest
+=======
+
+This is a simple utility to test the GPIO pins on your Raspberry Pi.
+
+NOTE: All GPIO peripherals must be removed to perform this test. This
+  includes serial, I2C and SPI connections. You may get incorrect results
+  if something is connected and it interferes with the test.
+
+This test can only test the input side of things. It uses the internal
+pull-up and pull-down resistors to simulate inputs. It does not test
+the output drivers.
+
+You will need to reboot your Pi after this test if you wish to use the 
+serial port as it will be left in GPIO mode rather than serial mode.
+
+This test only tests the original pins present on the Rev A and B. It
+does not test the extra pins on the Revision A2, B2 nor the A+ or B+
+
+Please make sure everything is removed and press the ENTER key to continue,
+or Control-C to abort... 
+
+          The main 8 GPIO pins  0: 7: 
+ --> Pin 0 failure. Expected 1, got 0
+ --> Pin 1 failure. Expected 1, got 0
+ --> Pin 2 failure. Expected 1, got 0
+ --> Pin 3 failure. Expected 1, got 0
+ --> Pin 4 failure. Expected 1, got 0
+ --> Pin 5 failure. Expected 1, got 0
+ --> Pin 6 failure. Expected 1, got 0
+ --> Pin 7 failure. Expected 1, got 0
+8 faults detected
+                The 5 SPI pins 10:14: 
+ --> Pin 10 failure. Expected 1, got 0
+ --> Pin 11 failure. Expected 1, got 0
+ --> Pin 12 failure. Expected 1, got 0
+ --> Pin 13 failure. Expected 1, got 0
+ --> Pin 14 failure. Expected 1, got 0
+5 faults detected
+               The serial pins 15:16: 
+ --> Pin 15 failure. Expected 1, got 0
+ --> Pin 16 failure. Expected 1, got 0
+2 faults detected
+                  The I2C pins  8: 9: Pin 8 failure - expected 1, got 0
+Pin 9 failure - expected 1, got 0
+2 faults detected
+
+
+Faults detected! Output of 'readall':
+ +-----+-----+---------+------+---+-Pi ZeroW-+---+------+---------+-----+-----+
+ | BCM | wPi |   Name  | Mode | V | Physical | V | Mode | Name    | wPi | BCM |
+ +-----+-----+---------+------+---+----++----+---+------+---------+-----+-----+
+ |     |     |    3.3v |      |   |  1 || 2  |   |      | 5v      |     |     |
+ |   2 |   8 |   SDA.1 |   IN | 0 |  3 || 4  |   |      | 5v      |     |     |
+ |   3 |   9 |   SCL.1 |   IN | 0 |  5 || 6  |   |      | 0v      |     |     |
+ |   4 |   7 | GPIO. 7 |   IN | 0 |  7 || 8  | 0 | IN   | TxD     | 15  | 14  |
+ |     |     |      0v |      |   |  9 || 10 | 0 | IN   | RxD     | 16  | 15  |
+ |  17 |   0 | GPIO. 0 |   IN | 0 | 11 || 12 | 0 | IN   | GPIO. 1 | 1   | 18  |
+ |  27 |   2 | GPIO. 2 |   IN | 0 | 13 || 14 |   |      | 0v      |     |     |
+ |  22 |   3 | GPIO. 3 |   IN | 0 | 15 || 16 | 0 | IN   | GPIO. 4 | 4   | 23  |
+ |     |     |    3.3v |      |   | 17 || 18 | 0 | IN   | GPIO. 5 | 5   | 24  |
+ |  10 |  12 |    MOSI |   IN | 0 | 19 || 20 |   |      | 0v      |     |     |
+ |   9 |  13 |    MISO |   IN | 0 | 21 || 22 | 0 | IN   | GPIO. 6 | 6   | 25  |
+ |  11 |  14 |    SCLK |   IN | 0 | 23 || 24 | 0 | IN   | CE0     | 10  | 8   |
+ |     |     |      0v |      |   | 25 || 26 | 0 | IN   | CE1     | 11  | 7   |
+ |   0 |  30 |   SDA.0 |   IN | 0 | 27 || 28 | 0 | IN   | SCL.0   | 31  | 1   |
+ |   5 |  21 | GPIO.21 |   IN | 0 | 29 || 30 |   |      | 0v      |     |     |
+ |   6 |  22 | GPIO.22 |   IN | 0 | 31 || 32 | 0 | IN   | GPIO.26 | 26  | 12  |
+ |  13 |  23 | GPIO.23 |   IN | 0 | 33 || 34 |   |      | 0v      |     |     |
+ |  19 |  24 | GPIO.24 |   IN | 0 | 35 || 36 | 0 | IN   | GPIO.27 | 27  | 16  |
+ |  26 |  25 | GPIO.25 |   IN | 0 | 37 || 38 | 0 | IN   | GPIO.28 | 28  | 20  |
+ |     |     |      0v |      |   | 39 || 40 | 0 | IN   | GPIO.29 | 29  | 21  |
+ +-----+-----+---------+------+---+----++----+---+------+---------+-----+-----+
+ | BCM | wPi |   Name  | Mode | V | Physical | V | Mode | Name    | wPi | BCM |
+ +-----+-----+---------+------+---+-Pi ZeroW-+---+------+---------+-----+-----+
+pi@raspberrypi:~ $ 
+
+# After

@@ -1,0 +1,11 @@
+{
+  "name": "LibreELEC_RPi2",
+  "version": "8.2.5",
+  "release_date": "2018-04-13",
+  "kernel": "ffd7bf4085b09447e5db96edd74e524f118ca3fe",
+  "description": "LibreELEC is a fast and user-friendly Kodi Entertainment Center distribution.",
+  "username": "root",
+  "password": "libreelec",
+  "supported_models": ["Pi 2","Pi 3"],
+  "supported_hex_revisions": "1040,1041,2082"
+}

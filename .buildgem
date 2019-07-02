@@ -1,0 +1,6 @@
+rake test TEST=test/classes/blah.rb TESTOPTS="--name=test_blah -v"
+
+gem build pi_driver.gemspec
+gem install ./pi_driver-0.0.VERSION_ITERATION.gem
+gem push pi_driver-0.0.VERSION_ITERATION.gem
+gem list -r pi_driver
